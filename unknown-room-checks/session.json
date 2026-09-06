@@ -1,0 +1,657 @@
+{
+  "experiment": "THE UNKNOWN ROOM",
+  "version": 1,
+  "recordedAt": "2026-09-06T07:25:15.373Z",
+  "durationMs": 26112.89999985695,
+  "timeBasis": "Foreground time; includes transitions; no idle-time deductions.",
+  "measurementNote": "Descriptive observations of this session, not validated cognitive or intelligence measurements.",
+  "stages": [
+    {
+      "index": 0,
+      "start": 90.5,
+      "end": 2424.899999856949,
+      "resets": 1,
+      "firstResponse": {
+        "time": 2334,
+        "actions": 5
+      },
+      "name": "Resonance"
+    },
+    {
+      "index": 1,
+      "start": 4734.099999904633,
+      "end": 7045.5,
+      "resets": 0,
+      "firstResponse": {
+        "time": 1118.6000001430511,
+        "actions": 2
+      },
+      "name": "Displacement"
+    },
+    {
+      "index": 2,
+      "start": 9352.399999856949,
+      "end": 12693.099999904633,
+      "resets": 0,
+      "firstResponse": {
+        "time": 1795.8000001907349,
+        "actions": 3
+      },
+      "name": "Difference"
+    },
+    {
+      "index": 3,
+      "start": 14998.5,
+      "end": 16855.700000047684,
+      "resets": 0,
+      "firstResponse": {
+        "time": 1857,
+        "actions": 3
+      },
+      "name": "Conjunction"
+    },
+    {
+      "index": 4,
+      "start": 19161.5,
+      "end": 23801.89999985695,
+      "resets": 1,
+      "firstResponse": {
+        "time": 1124.7999999523163,
+        "actions": 2
+      },
+      "name": "Reciprocity"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "stage": 0,
+      "type": "move",
+      "time": 111.59999990463257,
+      "method": "point",
+      "from": {
+        "x": 440,
+        "y": 330
+      },
+      "x": 200,
+      "y": 179.99998474121094,
+      "effective": true,
+      "outcome": "field moved"
+    },
+    {
+      "id": 2,
+      "stage": 0,
+      "type": "pulse",
+      "time": 1245.0999999046326,
+      "x": 200,
+      "y": 179.99998474121094,
+      "ready": [],
+      "effective": false,
+      "outcome": "no response",
+      "signature": "dormant::h5,5:n",
+      "contradiction": true,
+      "objects": [
+        {
+          "id": "a",
+          "x": 440,
+          "y": 330,
+          "kind": "gold"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "stage": 0,
+      "type": "pulse",
+      "time": 1936.5999999046326,
+      "x": 200,
+      "y": 179.99998474121094,
+      "ready": [],
+      "effective": false,
+      "outcome": "no response",
+      "signature": "dormant::h5,5:n",
+      "contradiction": true,
+      "objects": [
+        {
+          "id": "a",
+          "x": 440,
+          "y": 330,
+          "kind": "gold"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "stage": 0,
+      "type": "reset",
+      "time": 2034.0999999046326,
+      "effective": false,
+      "outcome": "room restored"
+    },
+    {
+      "id": 5,
+      "stage": 0,
+      "type": "pulse",
+      "time": 2424.5,
+      "x": 440,
+      "y": 330,
+      "ready": [
+        "a"
+      ],
+      "effective": true,
+      "outcome": "circuit complete",
+      "signature": "dormant:a:h11,8:n",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 440,
+          "y": 330,
+          "kind": "gold"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "stage": 1,
+      "type": "move",
+      "time": 4752.599999904633,
+      "method": "point",
+      "from": {
+        "x": 440,
+        "y": 330
+      },
+      "x": 320,
+      "y": 280,
+      "effective": true,
+      "outcome": "field moved"
+    },
+    {
+      "id": 7,
+      "stage": 1,
+      "type": "pulse",
+      "time": 5852.700000047684,
+      "x": 320,
+      "y": 280,
+      "ready": [
+        "a"
+      ],
+      "effective": true,
+      "outcome": "response stored",
+      "signature": "dormant:a:h8,7:n",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 320,
+          "y": 280,
+          "kind": "gold"
+        },
+        {
+          "id": "b",
+          "x": 650,
+          "y": 390,
+          "kind": "gold"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "stage": 1,
+      "type": "move",
+      "time": 5944.299999952316,
+      "method": "point",
+      "from": {
+        "x": 320,
+        "y": 280
+      },
+      "x": 650,
+      "y": 390,
+      "effective": true,
+      "outcome": "field moved"
+    },
+    {
+      "id": 9,
+      "stage": 1,
+      "type": "pulse",
+      "time": 7045.200000047684,
+      "x": 650,
+      "y": 390,
+      "ready": [
+        "b"
+      ],
+      "effective": true,
+      "outcome": "circuit complete",
+      "signature": "dormant:b:h16,10:n",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 320,
+          "y": 280,
+          "kind": "gold"
+        },
+        {
+          "id": "b",
+          "x": 650,
+          "y": 390,
+          "kind": "gold"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "stage": 2,
+      "type": "pulse",
+      "time": 9960.5,
+      "x": 600,
+      "y": 330,
+      "ready": [],
+      "effective": false,
+      "outcome": "no response",
+      "signature": "dormant::h15,8:n",
+      "contradiction": true,
+      "objects": [
+        {
+          "id": "a",
+          "x": 330,
+          "y": 330,
+          "kind": "gold"
+        },
+        {
+          "id": "b",
+          "x": 600,
+          "y": 330,
+          "kind": "blue"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "stage": 2,
+      "type": "move",
+      "time": 10048,
+      "method": "point",
+      "from": {
+        "x": 600,
+        "y": 330
+      },
+      "x": 330,
+      "y": 330,
+      "effective": true,
+      "outcome": "field moved"
+    },
+    {
+      "id": 12,
+      "stage": 2,
+      "type": "pulse",
+      "time": 11148.200000047684,
+      "x": 330,
+      "y": 330,
+      "ready": [
+        "a"
+      ],
+      "effective": true,
+      "outcome": "response stored",
+      "signature": "dormant:a:h8,8:n",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 330,
+          "y": 330,
+          "kind": "gold"
+        },
+        {
+          "id": "b",
+          "x": 600,
+          "y": 330,
+          "kind": "blue"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "stage": 2,
+      "type": "move",
+      "time": 11244.5,
+      "method": "point",
+      "from": {
+        "x": 330,
+        "y": 330
+      },
+      "x": 470.0000305175781,
+      "y": 330,
+      "effective": true,
+      "outcome": "field moved"
+    },
+    {
+      "id": 14,
+      "stage": 2,
+      "type": "pulse",
+      "time": 12692.799999952316,
+      "x": 470.0000305175781,
+      "y": 330,
+      "ready": [
+        "b"
+      ],
+      "effective": true,
+      "outcome": "circuit complete",
+      "signature": "dormant:b:h12,8:n",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 330,
+          "y": 330,
+          "kind": "gold"
+        },
+        {
+          "id": "b",
+          "x": 600,
+          "y": 330,
+          "kind": "blue"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "stage": 3,
+      "type": "pulse",
+      "time": 15608.099999904633,
+      "x": 360,
+      "y": 330,
+      "ready": [
+        "a"
+      ],
+      "effective": false,
+      "outcome": "incomplete conjunction",
+      "signature": "dormant:a:h9,8:n10",
+      "contradiction": true,
+      "objects": [
+        {
+          "id": "a",
+          "x": 360,
+          "y": 330,
+          "kind": "gold"
+        },
+        {
+          "id": "b",
+          "x": 386,
+          "y": 330,
+          "kind": "blue"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "stage": 3,
+      "type": "drag",
+      "time": 15800.299999952316,
+      "target": "b",
+      "method": "drag",
+      "from": {
+        "x": 386,
+        "y": 330
+      },
+      "x": 490.0000305175781,
+      "y": 330,
+      "effective": true,
+      "outcome": "position changed"
+    },
+    {
+      "id": 17,
+      "stage": 3,
+      "type": "pulse",
+      "time": 16855.5,
+      "x": 360,
+      "y": 330,
+      "ready": [
+        "a",
+        "b"
+      ],
+      "effective": true,
+      "outcome": "circuit complete",
+      "signature": "dormant:a,b:h9,8:n12",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 360,
+          "y": 330,
+          "kind": "gold"
+        },
+        {
+          "id": "b",
+          "x": 490.0000305175781,
+          "y": 330,
+          "kind": "blue"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "stage": 4,
+      "type": "move",
+      "time": 19181,
+      "method": "point",
+      "from": {
+        "x": 500,
+        "y": 202
+      },
+      "x": 500,
+      "y": 330,
+      "effective": true,
+      "outcome": "field moved"
+    },
+    {
+      "id": 19,
+      "stage": 4,
+      "type": "pulse",
+      "time": 20286.299999952316,
+      "x": 500,
+      "y": 330,
+      "ready": [
+        "a",
+        "b",
+        "c"
+      ],
+      "effective": true,
+      "outcome": "aperture became a source",
+      "signature": "dormant:a,b,c:h13,8:n",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 500,
+          "y": 202,
+          "kind": "blue"
+        },
+        {
+          "id": "b",
+          "x": 389.149,
+          "y": 394,
+          "kind": "blue"
+        },
+        {
+          "id": "c",
+          "x": 610.851,
+          "y": 394,
+          "kind": "blue"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "stage": 4,
+      "type": "pulse",
+      "time": 20971,
+      "x": 500,
+      "y": 330,
+      "ready": [
+        "a",
+        "b",
+        "c"
+      ],
+      "effective": false,
+      "outcome": "incomplete conjunction",
+      "signature": "awake:a,b,c:h13,8:n21",
+      "contradiction": true,
+      "objects": [
+        {
+          "id": "a",
+          "x": 500,
+          "y": 202,
+          "kind": "blue"
+        },
+        {
+          "id": "b",
+          "x": 389.149,
+          "y": 394,
+          "kind": "blue"
+        },
+        {
+          "id": "c",
+          "x": 610.851,
+          "y": 394,
+          "kind": "blue"
+        },
+        {
+          "id": "gate",
+          "x": 830,
+          "y": 330,
+          "kind": "gold"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "stage": 4,
+      "type": "reset",
+      "time": 21430.200000047684,
+      "effective": false,
+      "outcome": "room restored"
+    },
+    {
+      "id": 22,
+      "stage": 4,
+      "type": "move",
+      "time": 21438.200000047684,
+      "method": "point",
+      "from": {
+        "x": 500,
+        "y": 202
+      },
+      "x": 500,
+      "y": 330,
+      "effective": true,
+      "outcome": "field moved"
+    },
+    {
+      "id": 23,
+      "stage": 4,
+      "type": "pulse",
+      "time": 22539.099999904633,
+      "x": 500,
+      "y": 330,
+      "ready": [
+        "a",
+        "b",
+        "c"
+      ],
+      "effective": true,
+      "outcome": "aperture became a source",
+      "signature": "dormant:a,b,c:h13,8:n",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 500,
+          "y": 202,
+          "kind": "blue"
+        },
+        {
+          "id": "b",
+          "x": 389.149,
+          "y": 394,
+          "kind": "blue"
+        },
+        {
+          "id": "c",
+          "x": 610.851,
+          "y": 394,
+          "kind": "blue"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "stage": 4,
+      "type": "drag",
+      "time": 22720.200000047684,
+      "target": "gate",
+      "method": "drag",
+      "from": {
+        "x": 830,
+        "y": 330
+      },
+      "x": 500,
+      "y": 330,
+      "effective": true,
+      "outcome": "position changed"
+    },
+    {
+      "id": 25,
+      "stage": 4,
+      "type": "pulse",
+      "time": 23801.5,
+      "x": 500,
+      "y": 330,
+      "ready": [
+        "a",
+        "b",
+        "c",
+        "gate"
+      ],
+      "effective": true,
+      "outcome": "circuit complete",
+      "signature": "awake:a,b,c,gate:h13,8:n13",
+      "contradiction": false,
+      "objects": [
+        {
+          "id": "a",
+          "x": 500,
+          "y": 202,
+          "kind": "blue"
+        },
+        {
+          "id": "b",
+          "x": 389.149,
+          "y": 394,
+          "kind": "blue"
+        },
+        {
+          "id": "c",
+          "x": 610.851,
+          "y": 394,
+          "kind": "blue"
+        },
+        {
+          "id": "gate",
+          "x": 500,
+          "y": 330,
+          "kind": "gold"
+        }
+      ]
+    }
+  ],
+  "repeatedFailedConfigurations": 1,
+  "revisedTrials": {
+    "changed": 2,
+    "total": 3
+  },
+  "postFailureInteractionChanges": {
+    "changed": 0,
+    "total": 0
+  }
+}

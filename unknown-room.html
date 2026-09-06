@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d10">
+<title>THE UNKNOWN ROOM — A Cognitive Discovery Experiment</title>
+<style>
+  :root{color-scheme:dark;--bg:#090d10;--ink:#e3e1d8;--muted:#788281;--line:#27302f;--gold:#c9b68b;--blue:#85b9b7;--red:#bf8176;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--sans:"Helvetica Neue","Segoe UI",Arial,sans-serif}
+  *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg)}body{font-family:var(--sans);color:var(--ink);font-weight:400;-webkit-font-smoothing:antialiased}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,[tabindex]:focus-visible{outline:1px solid var(--gold);outline-offset:7px}button{touch-action:manipulation}button:disabled{cursor:default;opacity:.35}::selection{background:#748d8955}svg{overflow:visible}button svg{overflow:visible}button{border-radius:0}button:focus:not(:focus-visible){outline:none}
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.91' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath filter='url(%23n)' opacity='.7' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+  .screen{position:relative;min-height:100svh}.screen[hidden]{display:none!important}.eyebrow{font:10px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}.landing{display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#18222266 0,transparent 53%)}.landing:after{content:"";position:absolute;inset:26px;border:1px solid #748d8910;pointer-events:none}.landing-content{position:relative;padding:50px 22px 110px;z-index:1}.artifact{width:240px;height:240px;margin:0 auto 45px;filter:drop-shadow(0 0 32px #b6c8b51c)}.artifact .orbit{transform-origin:120px 120px;animation:orbit 65s linear infinite}.artifact .breathing{animation:breathe 5s ease-in-out infinite}.landing h1{font-size:clamp(24px,3.9vw,49px);font-weight:300;letter-spacing:.21em;margin:0 0 20px;padding-left:.21em}.landing .eyebrow{font-size:9px;letter-spacing:.29em}.enter{margin-top:49px;display:inline-flex;align-items:center;justify-content:center;gap:49px;padding:17px 26px;border:1px solid #78847b66;background:#c6c1a804;font:10px var(--mono);letter-spacing:.27em;transition:background .3s,border-color .3s,transform .3s}.enter:hover{background:#c6c1a80d;border-color:#c9b68b;transform:translateY(-2px)}.enter span:last-child{font-size:16px;letter-spacing:0;font-weight:300}.landing-foot{position:absolute;bottom:40px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:14px;font:9px var(--mono);letter-spacing:.19em;color:#626c6b}.landing-foot i{width:3px;height:3px;border-radius:50%;background:#788b80}.entry-lines{position:absolute;inset:0;pointer-events:none;opacity:.35}.entry-lines:before,.entry-lines:after{content:"";position:absolute;left:50%;height:9vh;width:1px;background:linear-gradient(transparent,#607774)}.entry-lines:before{top:7vh}.entry-lines:after{bottom:13vh;transform:rotate(180deg)}
+  .room{height:100svh;min-height:480px;overflow:hidden;user-select:none;background:radial-gradient(ellipse at 50% 48%,#1722226b 0%,#10171944 37%,transparent 72%)}.room-top{position:absolute;z-index:2;left:42px;right:42px;top:34px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}.wordmark{display:flex;align-items:center;gap:13px;color:#85918c;font:9px var(--mono);letter-spacing:.19em}.wordmark svg{width:20px;height:20px;opacity:.65}.progress{display:flex;gap:9px;align-items:center}.progress i{display:block;width:17px;height:2px;background:#33403e;transition:background 1s,box-shadow 1s}.progress i.current{background:#c9b68b;box-shadow:0 0 10px #c9b68b44}.progress i.done{background:#718d84}.board-wrap{position:absolute;inset:80px 20px 93px;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .6s,filter .6s}.board-wrap.changing{opacity:0;filter:blur(8px)}#board{width:100%;height:100%;max-width:1350px;max-height:850px;touch-action:none;-webkit-tap-highlight-color:transparent}.room-bottom{position:absolute;bottom:31px;left:42px;right:42px;display:flex;align-items:center;justify-content:space-between;z-index:3;height:50px}.quiet-button{border:0;background:transparent;color:#7d8985;font:10px var(--mono);letter-spacing:.12em;min-height:44px;display:inline-flex;gap:10px;align-items:center;padding:8px 0;transition:color .25s}.quiet-button:hover{color:#e3e1d8}.quiet-button svg{width:15px;height:15px}.pulse-button{position:absolute;left:50%;top:0;transform:translateX(-50%);width:49px;height:49px;display:grid;place-items:center;border:1px solid #63797055;border-radius:50%;background:#b6cdb005;color:var(--gold);transition:background .25s,border-color .25s,box-shadow .25s}.pulse-button:hover{border-color:#b7bd9f;background:#c6cfb60a;box-shadow:0 0 28px #9dbea010}.pulse-button:active{background:#c6cfb629}.pulse-button svg{width:26px;height:26px}.pulse-button.idle{animation:button-breathe 4s ease-in-out infinite}.room-corner{position:absolute;width:12px;height:12px;border-color:#57746c44;pointer-events:none}.corner-tl{left:25px;top:79px;border-left:1px solid;border-top:1px solid}.corner-tr{right:25px;top:79px;border-right:1px solid;border-top:1px solid}.corner-bl{left:25px;bottom:95px;border-left:1px solid;border-bottom:1px solid}.corner-br{right:25px;bottom:95px;border-right:1px solid;border-bottom:1px solid}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.draggable{cursor:ew-resize}.field-handle{cursor:grab}.field-handle:active{cursor:grabbing}
+  .debrief{background:radial-gradient(ellipse at 85% 0%,#23352e33,transparent 44%);padding:42px max(26px,calc((100vw - 1120px)/2)) 45px}.debrief-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:25px}.debrief-top .eyebrow{font-size:9px}.complete-mark{display:flex;gap:9px;align-items:center;color:#9ab29f}.complete-mark:before{content:"";width:5px;height:5px;border-radius:50%;background:#9ab29f;box-shadow:0 0 15px #9ab29f66}.debrief-header{padding:62px 0 42px;display:grid;grid-template-columns:1fr 270px;gap:45px;align-items:end}.debrief h1{font-size:clamp(36px,5.2vw,64px);font-weight:300;letter-spacing:-.04em;line-height:1.07;margin:17px 0 22px}.debrief h1 em{font-family:Georgia,serif;color:var(--gold);font-weight:400}.debrief-header p{font-size:13px;line-height:1.8;color:#96a19c;margin:0;max-width:555px}.debrief-seal{display:flex;align-items:center;gap:22px;justify-content:flex-end;padding-bottom:4px}.debrief-seal svg{width:66px;height:66px}.debrief-seal p{font:9px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.1em}.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);padding:24px 0;margin-bottom:49px}.stat{padding:0 26px;border-left:1px solid var(--line)}.stat:first-child{padding-left:0;border-left:0}.stat-value{font-size:32px;font-weight:300;letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin-bottom:8px}.stat .eyebrow{font-size:8px;letter-spacing:.17em}.section-heading{display:flex;justify-content:space-between;align-items:baseline;gap:25px;margin-bottom:19px}.section-heading h2{font-weight:400;font-size:17px;letter-spacing:-.015em;margin:0}.section-heading p{font:9px var(--mono);color:#798780;margin:0}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{position:relative;border:1px solid #37403a;min-height:195px;padding:24px;background:linear-gradient(135deg,#a4b39808,transparent 80%);overflow:hidden}.metric:first-child{grid-column:span 3;min-height:145px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;border-color:#66705a66;background:linear-gradient(110deg,#b4ba900b,transparent)}.metric-index{font:9px var(--mono);color:#63716a;margin-right:9px}.metric h3{font-size:10px;font-weight:400;letter-spacing:.06em;color:#acb6ac;margin:0 0 23px}.metric-value{font-size:24px;font-weight:300;letter-spacing:-.02em;color:#d5d2bb;margin-bottom:13px}.metric p{font-size:11px;line-height:1.8;color:#87958c;margin:0;max-width:440px}.metric:first-child .metric-value{font-size:35px;margin-bottom:0}.metric-glyph{position:absolute;right:22px;top:21px;font:12px var(--mono);color:#81967c}.observation-note{font-size:10px;line-height:1.8;color:#7c8983;margin:18px 0 52px;max-width:780px}.path-panel{border:1px solid #37403a;padding:28px;margin-bottom:16px;background:#d0e6c502}.timeline-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:25px}.timeline-heading h3{font-size:11px;font-weight:400;margin:0}.legend{display:flex;gap:14px;font:8px var(--mono);color:#8c9891}.legend span{display:flex;align-items:center;gap:5px}.legend i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold)}.legend .move-dot{background:#688e89}.legend .fail-dot{background:var(--red)}#timeline{width:100%;height:auto;display:block}.room-tabs{display:flex;gap:4px;flex-wrap:wrap;margin:25px 0 0}.room-tab{flex:1;min-width:108px;font:9px var(--mono);letter-spacing:.04em;padding:13px 8px;border:1px solid transparent;background:transparent;color:#88968e;text-align:left;transition:all .2s}.room-tab:hover{background:#ffffff04;color:var(--ink)}.room-tab[aria-selected="true"]{border-color:#6a785d66;background:#bfcca109;color:#dbdac4}.room-tab span{color:#7a876f;margin-right:7px}.path-detail{display:grid;grid-template-columns:1fr 1fr;gap:42px;padding-top:27px;border-top:1px solid var(--line);margin-top:17px;align-items:center}.path-map{width:100%;height:180px;background:radial-gradient(ellipse,#b1ccaa05,transparent);border:1px solid #46534433}.path-copy h3{font-size:22px;font-weight:300;margin:0 0 11px}.path-copy p{font-size:11px;line-height:1.8;color:#92a095;margin:0 0 15px}.path-copy .eyebrow{font-size:8px;line-height:1.8;color:#a7b493}.debrief-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:27px}.footer-actions{display:flex;gap:23px}.restart{border:1px solid #73836577;background:transparent;padding:14px 19px;font:9px var(--mono);letter-spacing:.1em}.restart:hover{background:#d7e0af08;border-color:#a9b28b}.export{border:0;background:transparent;color:#9ca892;font:9px var(--mono);padding:14px 0}.export:hover{color:#e1e0c8}.privacy{font:8px/1.8 var(--mono);letter-spacing:.04em;color:#718075}.tooltip{position:fixed;pointer-events:none;z-index:20;max-width:230px;padding:10px 12px;background:#141c19;border:1px solid #52634c;color:#cfdbc6;font:10px/1.6 var(--mono);box-shadow:0 8px 35px #0008}.tooltip[hidden]{display:none}
+  @keyframes orbit{to{transform:rotate(360deg)}}@keyframes breathe{50%{opacity:.4}}@keyframes button-breathe{50%{border-color:#aebd8f88;box-shadow:0 0 22px #c2d6a414}}@keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.debrief:not([hidden]){animation:fade-in .9s ease both}
+  @media(max-width:700px){.landing:after{inset:16px}.artifact{width:190px;height:190px;margin-bottom:37px}.landing h1{font-size:clamp(18px,4.6vw,32px);letter-spacing:.15em}.landing .eyebrow{font-size:7px;letter-spacing:.17em}.landing-content{padding-bottom:90px}.landing-foot{font-size:8px;bottom:32px}.room-top{left:25px;right:25px;top:27px}.wordmark{font-size:7px;letter-spacing:.12em;gap:8px}.wordmark svg{width:17px}.progress{gap:6px}.progress i{width:12px}.board-wrap{inset:90px 0 120px}.room-bottom{left:25px;right:25px;bottom:38px}.room-corner{display:none}.quiet-button{font-size:9px}.pulse-button{width:55px;height:55px;top:-3px}.debrief{padding:26px 21px 35px}.debrief-top .eyebrow{font-size:7px;letter-spacing:.1em}.debrief-header{padding:44px 0 30px;grid-template-columns:1fr}.debrief-header p{font-size:12px}.debrief-seal{display:none}.stats{padding:20px 0;margin-bottom:35px}.stat{padding:0 12px}.stat-value{font-size:25px}.stat .eyebrow{font-size:6px;letter-spacing:.07em}.section-heading{align-items:flex-start}.section-heading h2{font-size:15px}.section-heading p{font-size:7px;max-width:120px;line-height:1.7;text-align:right}.metric-grid{grid-template-columns:1fr 1fr;gap:9px}.metric{padding:19px 16px;min-height:210px}.metric:first-child{grid-column:span 2;display:block;padding:23px;min-height:180px}.metric:first-child p{margin-top:18px}.metric h3{font-size:9px;line-height:1.7;max-width:135px;margin-bottom:18px}.metric-value{font-size:22px}.metric p{font-size:10px}.metric-glyph{display:none}.metric-index{margin-right:5px}.observation-note{font-size:9px;margin-bottom:36px}.path-panel{padding:19px 15px}.timeline-heading{align-items:flex-start;gap:15px}.legend{flex-wrap:wrap;max-width:160px;justify-content:flex-end;gap:8px;font-size:7px}.room-tab{min-width:85px;font-size:8px;padding:10px 7px}.path-detail{grid-template-columns:1fr;gap:22px}.path-map{height:160px}.debrief-footer{flex-wrap:wrap;gap:20px}.privacy{font-size:7px}.footer-actions{gap:18px}.timeline-heading h3{font-size:10px;white-space:nowrap}}
+  #board:focus{outline:none}.room-corner{color:#57746c44}.room:has(#board:focus-visible) .room-corner{color:#91a38888}.timeline-scroll{overflow-x:auto;scrollbar-width:thin;scrollbar-color:#56654b transparent}
+  @media(max-width:700px){#timeline{min-width:640px}.timeline-scroll{padding-bottom:10px}}
+  @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition-duration:.12s!important}}
+</style>
+</head>
+<body>
+<main>
+  <section class="screen landing" id="landing" aria-labelledby="title">
+    <div class="entry-lines"></div>
+    <div class="landing-content">
+      <svg class="artifact" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+        <circle cx="120" cy="120" r="109" stroke="#63736b" stroke-opacity=".16"/>
+        <circle cx="120" cy="120" r="86" stroke="#a1b09a" stroke-opacity=".25" stroke-dasharray="1 8"/>
+        <g class="orbit"><path d="M120 11v8M120 221v8M11 120h8M221 120h8" stroke="#9aa78f" stroke-opacity=".6"/><circle cx="120" cy="11" r="2" fill="#b7c5a6"/></g>
+        <path d="M120 52 179 154H61Z" stroke="#859983" stroke-opacity=".32"/>
+        <circle cx="120" cy="120" r="44" stroke="#c9b68b" stroke-opacity=".7"/>
+        <path d="M114 76h12M114 164h12M76 114v12M164 114v12" stroke="#c9b68b"/>
+        <circle cx="120" cy="52" r="5" fill="#0e1516" stroke="#85b9b7"/>
+        <circle cx="61" cy="154" r="5" fill="#0e1516" stroke="#85b9b7"/>
+        <circle cx="179" cy="154" r="5" fill="#0e1516" stroke="#85b9b7"/>
+        <circle class="breathing" cx="120" cy="120" r="4" fill="#d2c29a"/>
+        <circle cx="120" cy="120" r="12" stroke="#c9b68b" stroke-opacity=".18"/>
+      </svg>
+      <h1 id="title">THE UNKNOWN ROOM</h1>
+      <div class="eyebrow">A cognitive discovery experiment</div>
+      <button class="enter" id="enter"><span>ENTER</span><span aria-hidden="true">↗</span></button>
+    </div>
+    <div class="landing-foot"><span>OBSERVE</span><i></i><span>ACT</span><i></i><span>RECONSIDER</span></div>
+  </section>
+  <section class="screen room" id="room" aria-label="The unknown room" hidden>
+    <header class="room-top"><div class="wordmark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 0v3m0 18v3M0 12h3m18 0h3" stroke="currentColor"/></svg><span>THE UNKNOWN ROOM</span></div><div class="progress" id="progress" aria-label="Room 1 of 5"><i></i><i></i><i></i><i></i><i></i></div></header>
+    <span class="room-corner corner-tl"></span><span class="room-corner corner-tr"></span><span class="room-corner corner-bl"></span><span class="room-corner corner-br"></span>
+    <div class="board-wrap" id="board-wrap">
+      <svg id="board" viewBox="0 0 1000 660" role="group" aria-label="Interactive instrument" tabindex="0">
+        <defs>
+          <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><circle cx="17" cy="17" r=".7" fill="#83978c" opacity=".2"/></pattern>
+          <radialGradient id="floor-glow"><stop stop-color="#92ad9733"/><stop offset="1" stop-color="#92ad9700"/></radialGradient>
+          <radialGradient id="amber-wash"><stop stop-color="#c9b68b" stop-opacity=".04"/><stop offset=".85" stop-color="#c9b68b" stop-opacity=".01"/><stop offset="1" stop-color="#c9b68b" stop-opacity=".04"/></radialGradient>
+          <radialGradient id="gate-core"><stop stop-color="#010405"/><stop offset=".85" stop-color="#060b0d"/><stop offset="1" stop-color="#526252" stop-opacity=".35"/></radialGradient>
+          <filter id="soft-glow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3"/></filter>
+          <filter id="wide-glow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="10"/></filter>
+        </defs>
+        <g id="environment" aria-hidden="true"><ellipse cx="500" cy="352" rx="390" ry="220" fill="url(#floor-glow)" opacity=".27"/><rect x="120" y="110" width="770" height="442" fill="url(#grid)" opacity=".85"/><path d="M151 243V148h96M751 148h96v95M847 419v94h-96M247 513h-96v-94" fill="none" stroke="#536a5c" stroke-opacity=".27" stroke-width=".7"/><path d="M490 124h20M500 119v10M490 536h20M500 531v10" stroke="#718675" stroke-width=".7" opacity=".35"/></g>
+        <g id="tracks" aria-hidden="true"></g><g id="connections" aria-hidden="true"></g>
+        <g id="field" aria-hidden="true"><circle id="outer-wash" r="125" fill="none" stroke="#85b9b7" stroke-opacity=".018" stroke-width="42"/><circle r="146" fill="none" stroke="#85b9b7" stroke-opacity=".19" stroke-width=".8" stroke-dasharray="1 7"/><circle r="104" fill="none" stroke="#85b9b7" stroke-opacity=".18" stroke-width=".7"/><path d="M0-151v10M151 0h-10M0 151v-10M-151 0h10" stroke="#85b9b7" stroke-opacity=".4" stroke-width=".8"/><circle id="inner-wash" r="64" fill="url(#amber-wash)" stroke="#c9b68b" stroke-opacity=".5" stroke-width=".8"/><path d="M-5-64H5M-5 64H5M-64-5V5M64-5V5" stroke="#c9b68b" stroke-opacity=".9" stroke-width="1.2"/><circle r="5" fill="#0c1314" stroke="#b8c3ae" stroke-opacity=".7"/><path d="M-2 0h4M0-2v4" stroke="#d1d3bb" stroke-width=".7"/><circle id="field-hit" r="30" fill="transparent" class="field-handle"/></g>
+        <g id="nodes"></g><g id="gate"></g><g id="effects" pointer-events="none" aria-hidden="true"></g>
+      </svg>
+    </div>
+    <footer class="room-bottom"><button class="quiet-button" id="reset" aria-label="Reset this room"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 7a6 6 0 1 1 0 6M4 3v4h4" stroke="currentColor" stroke-width="1.2"/></svg>Reset</button><button class="pulse-button idle" id="pulse" aria-label="Send a pulse (Space)"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-opacity=".35"/><circle cx="15" cy="15" r="5" stroke="currentColor"/><circle cx="15" cy="15" r="1.5" fill="currentColor"/></svg></button><button class="quiet-button" id="sound" aria-label="Mute sound" aria-pressed="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 8h3l4-4v12l-4-4H3Z" stroke="currentColor"/><path class="sound-waves" d="M13 7q4 3 0 6m2-9q7 6 0 12" stroke="currentColor"/><path class="sound-slash" d="m3 3 14 14" stroke="currentColor" style="display:none"/></svg><span>Sound</span></button></footer>
+    <div id="live" class="sr-only" role="status" aria-live="polite"></div>
+  </section>
+  <section class="screen debrief" id="debrief" aria-labelledby="debrief-title" hidden></section>
+</main>
+<div class="tooltip" id="tooltip" hidden></div>
+<script>
+(() => {
+  'use strict';
+  // One spatial grammar: amber responds within 64 units; blue responds in 104–146.
+  // Stages I–III latch responses. IV–V require a single, complete conjunction.
+  const $ = id => document.getElementById(id);
+  const C = {gold:'#c9b68b',blue:'#85b9b7',red:'#bf8176',dim:'#4c6256'};
+  const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+  const dist = (a,b) => Math.hypot(a.x-b.x,a.y-b.y);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sleep = ms => new Promise(resolve => setTimeout(resolve,reduced ? Math.min(ms,140) : ms));
+  const fmt = ms => { const s = Math.round(ms/1000); return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; };
+  const roman = ['I','II','III','IV','V'];
+  const STAGES = [
+    {name:'Resonance',halo:{x:440,y:330},nodes:[{id:'a',x:440,y:330,kind:'gold'}],coupled:false,
+      insight:'A pulse reaches an amber point inside the inner circle. The first response establishes a relationship between position, light, and consequence.'},
+    {name:'Displacement',halo:{x:440,y:330},nodes:[{id:'a',x:320,y:280,kind:'gold'},{id:'b',x:650,y:390,kind:'gold'}],coupled:false,
+      insight:'The same relationship survives a change in location. Moving the field and pulsing each amber point stores two separate responses.'},
+    {name:'Difference',halo:{x:600,y:330},nodes:[{id:'a',x:330,y:330,kind:'gold'},{id:'b',x:600,y:330,kind:'blue'}],coupled:false,
+      insight:'Blue responds in the outer band, not at the center. An unsuccessful pulse at a blue point makes the second region of the field visible. Each color has a different spatial rule.'},
+    {name:'Conjunction',halo:{x:360,y:330},nodes:[{id:'a',x:360,y:330,kind:'gold'},{id:'b',x:386,y:330,kind:'blue',draggable:true,minX:386,maxX:680}],coupled:true,
+      insight:'The joined circuit requires both responses in one pulse. The points begin too close together. Moving the blue point along its rail creates a position where both rules hold at once.'},
+    {name:'Reciprocity',halo:{x:500,y:202},nodes:[{id:'a',x:500,y:202,kind:'blue'},{id:'b',x:389.149,y:394,kind:'blue'},{id:'c',x:610.851,y:394,kind:'blue'}],coupled:true,
+      insight:'An empty center brings all three blue points into the outer band. Their response reveals that the apparent exit is also an amber point. Moving it into the inner circle completes the circuit: the destination was part of the instrument all along.'}
+  ];
+
+  class Session {
+    constructor(){this.events=[];this.stages=[];this.started=performance.now();this.paused=0;this.hiddenAt=null;this.ended=null;this.lastFailure=null;this.lastIntervention=null;this.revisions={changed:0,total:0};this.flex={changed:0,total:0};this.repeatFailures=0;}
+    now(){return (this.ended ?? this.hiddenAt ?? performance.now())-this.started-this.paused;}
+    visibility(hidden){if(this.ended!==null)return;if(hidden && this.hiddenAt===null)this.hiddenAt=performance.now();else if(!hidden && this.hiddenAt!==null){this.paused+=performance.now()-this.hiddenAt;this.hiddenAt=null;}}
+    startStage(index){this.stages[index]={index,start:this.now(),end:null,resets:0,firstResponse:null};this.lastFailure=null;this.lastIntervention=null;}
+    log(stage,type,data={}){
+      const event={id:this.events.length+1,stage,type,time:this.now(),...data};this.events.push(event);
+      const current=this.stages[stage];
+      if(type==='reset'){current.resets++;this.lastFailure=null;this.lastIntervention=null;}
+      if(type==='pulse'){
+        if(this.lastFailure){this.revisions.total++;if(event.signature!==this.lastFailure.signature)this.revisions.changed++;}
+        if(event.effective){if(current.firstResponse===null)current.firstResponse={time:event.time-current.start,actions:this.events.filter(e=>e.stage===stage).length};this.lastFailure=null;}
+        else{if(this.lastFailure?.signature===event.signature)this.repeatFailures++;this.lastFailure=event;}
+      }
+      if((type==='move'||type==='drag') && event.effective && this.lastFailure){
+        if(this.lastIntervention){this.flex.total++;if(type!==this.lastIntervention)this.flex.changed++;}
+        this.lastIntervention=type;
+      }
+      return event;
+    }
+    endStage(index){this.stages[index].end=this.now();}
+    finish(){const now=performance.now();if(this.hiddenAt!==null){this.paused+=now-this.hiddenAt;this.hiddenAt=null;}this.ended=now;}
+    export(){return {experiment:'THE UNKNOWN ROOM',version:1,recordedAt:new Date().toISOString(),durationMs:this.now(),timeBasis:'Foreground time; includes transitions; no idle-time deductions.',measurementNote:'Descriptive observations of this session, not validated cognitive or intelligence measurements.',stages:this.stages.map(s=>({...s,name:STAGES[s.index].name})),events:this.events,repeatedFailedConfigurations:this.repeatFailures,revisedTrials:this.revisions,postFailureInteractionChanges:this.flex};}
+  }
+
+  class Sound {
+    constructor(){this.enabled=true;this.ctx=null;}
+    init(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;this.ctx??=new A();if(this.ctx.state==='suspended')this.ctx.resume().catch(()=>{});}catch{this.ctx=null;}}
+    play(kind='move',pan=0){
+      if(!this.enabled)return;this.init();if(!this.ctx)return;
+      try{
+        const notes={move:[185],ready:[370,554],pulse:[130.81,261.63],fail:[110,116.54],partial:[196,293.66],charge:[261.63,392,523.25],awaken:[196,293.66,440,587.33],complete:[174.61,261.63,349.23,523.25,698.46]}[kind]||[220];
+        const t=this.ctx.currentTime, duration=kind==='complete'?1.9:kind==='awaken'?1.5:kind==='move'?.09:.6;
+        notes.forEach((f,i)=>{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime((kind==='move'?.009:.025)/Math.sqrt(notes.length),t+.015+i*.025);g.gain.exponentialRampToValueAtTime(.0001,t+duration);o.connect(g);if(this.ctx.createStereoPanner){const p=this.ctx.createStereoPanner();p.pan.value=clamp(pan,-1,1);g.connect(p);p.connect(this.ctx.destination);o.onended=()=>{o.disconnect();g.disconnect();p.disconnect();};}else{g.connect(this.ctx.destination);o.onended=()=>{o.disconnect();g.disconnect();};}o.start(t);o.stop(t+duration+.1);});
+      }catch{/* Sound is supplemental. All feedback also has a visual equivalent. */}
+    }
+    toggle(){this.enabled=!this.enabled;if(this.enabled)this.init();return this.enabled;}
+  }
+
+  class Instrument {
+    constructor(){
+      this.mode='landing';this.index=0;this.state=null;this.session=null;this.sound=new Sound();this.keys=new Set();this.pointer=null;this.keyGesture=null;this.fx=[];this.feedbackUntil=0;this.lastFrame=performance.now();this.pulseAt=-10000;this.lastReady='';this.raf=0;this.bind();
+      this.frame=this.frame.bind(this);this.raf=requestAnimationFrame(this.frame);
+    }
+    start(){
+      this.session=new Session();this.mode='playing';this.index=0;this.sound.init();$('landing').hidden=true;$('debrief').hidden=true;$('room').hidden=false;this.load(0);$('board').focus({preventScroll:true});
+    }
+    load(index,reset=false){
+      this.index=index;this.state={halo:{...STAGES[index].halo},target:{...STAGES[index].halo},nodes:STAGES[index].nodes.map(n=>({...n,lit:false})),gate:{x:830,y:330},awake:false,solved:false};this.fx=[];this.feedbackUntil=0;this.pulseAt=-10000;this.keys.clear();this.keyGesture=null;this.pointer=null;this.lastReady='';this.mode='playing';
+      if(!reset)this.session.startStage(index);
+      this.build();$('progress').setAttribute('aria-label',`Room ${index+1} of 5`);[...$('progress').children].forEach((p,i)=>{p.className=i<index?'done':i===index?'current':'';});$('live').textContent=`Room ${index+1}.`;$('pulse').classList.toggle('idle',index===0);this.paint(performance.now());
+    }
+    allNodes(){return this.index===4 && this.state.awake ? [...this.state.nodes,{id:'gate',...this.state.gate,kind:'gold',lit:false,draggable:true}]:this.state.nodes;}
+    ready(node){const d=dist(node,this.state.halo);return node.kind==='gold'?d<=64:d>=104&&d<=146;}
+    readyIDs(){return this.allNodes().filter(n=>this.ready(n)).map(n=>n.id);}
+    signature(){const cell=v=>Math.round(Math.round(v)/40);return `${this.state.awake?'awake':'dormant'}:${this.readyIDs().join(',')}:h${cell(this.state.halo.x)},${cell(this.state.halo.y)}:n${this.allNodes().filter(n=>n.draggable).map(n=>cell(n.x)).join(',')}`;}
+    snapshot(){return {mode:this.mode,stage:this.index+1,halo:{...this.state?.halo},nodes:this.state?this.allNodes().map(n=>({...n,ready:this.ready(n)})):[],gate:{...this.state?.gate},awake:this.state?.awake,solved:this.state?.solved,session:this.session?.export()};}
+    build(){
+      const s=this.state,def=STAGES[this.index];
+      for(const attr of ['class','role','tabindex','aria-label','aria-valuemin','aria-valuemax','aria-valuenow'])$('gate').removeAttribute(attr);
+      $('tracks').innerHTML=s.nodes.filter(n=>n.draggable).map(n=>this.rail(n.minX,n.maxX,n.y,n.id)).join('')+(this.index===4?`<g id="gate-rail" opacity=".05">${this.rail(345,830,330,'gate')}</g>`:'');
+      $('connections').innerHTML=s.nodes.map((n,i)=>`<path id="wire-${n.id}" fill="none" stroke="${C[n.kind]}" stroke-opacity=".17" stroke-width=".8"/><path id="flow-${n.id}" fill="none" stroke="${C[n.kind]}" stroke-opacity="0" stroke-width="1.4" pathLength="1"/><circle id="port-${n.id}" r="3" fill="#0c1213" stroke="${C[n.kind]}" stroke-width=".7" stroke-opacity=".5"/>`).join('')+(def.coupled?'<path id="coupling" fill="none" stroke="#97a58f" stroke-width=".8" opacity=".35"/>':'');
+      $('nodes').innerHTML=s.nodes.map(n=>`<g id="node-${n.id}" ${n.draggable?`class="draggable" role="slider" tabindex="0" aria-label="Movable blue point" aria-valuemin="${n.minX}" aria-valuemax="${n.maxX}" aria-valuenow="${n.x}"`: 'aria-hidden="true"'}>
+        <circle r="25" fill="${C[n.kind]}" opacity="0" filter="url(#soft-glow)" class="node-glow"/>
+        <circle r="18" fill="#0a1112" stroke="${C[n.kind]}" stroke-opacity=".24" stroke-width=".7"/>
+        <circle r="11" fill="${n.kind==='gold'?C.gold:'#0d1719'}" fill-opacity="${n.kind==='gold'?'.78':'1'}" stroke="${C[n.kind]}" stroke-width="1" class="node-body"/>
+        ${n.kind==='gold'?'<circle r="3" fill="#e4d7ac"/>':'<circle r="3.5" fill="#85b9b7"/><path d="M-7-7 7 7M-7 7 7-7" stroke="#85b9b7" stroke-width=".65" opacity=".55"/>'}
+        <path d="M-6-24h12M-6 24h12" stroke="${C[n.kind]}" stroke-opacity=".3" stroke-width="1" class="node-ready"/>
+        ${n.draggable?'<path d="M-27-4v8m-4-7v6M27-4v8m4-7v6" stroke="#85b9b7" stroke-opacity=".7" stroke-width=".8"/><circle r="30" fill="transparent"/>':''}
+      </g>`).join('');
+      $('gate').innerHTML=`<g id="gate-body"><circle r="61" fill="none" stroke="#8b9b81" stroke-opacity=".1" stroke-width=".7"/><circle r="48" fill="none" stroke="#82937b" stroke-opacity=".28" stroke-width=".8"/><circle r="37" fill="url(#gate-core)" stroke="#839079" stroke-opacity=".48" stroke-width="1"/><circle id="gate-light" r="32" fill="none" stroke="#c9b68b" stroke-opacity="0" stroke-width="1.3"/><path id="gate-seam" d="M0-30V30" stroke="#71846c" stroke-opacity=".24" stroke-width=".7"/><path d="M-6-49h12M-6 49h12M-49-6v12M49-6v12" stroke="#9aaa89" stroke-opacity=".5" stroke-width=".8"/><circle id="gate-seed" r="4" fill="#c9b68b" opacity=".07"/><g id="gate-grips" opacity="0"><path d="M-56-5v10m-4-8v6M56-5v10m4-8v6" stroke="#c9b68b" stroke-width="1"/><circle r="43" fill="transparent"/></g></g>`;
+    }
+    rail(x1,x2,y,id){let ticks='';for(let x=x1;x<=x2;x+=24)ticks+=`M${x} ${y+35}v4`;
+      return `<g><path d="M${x1} ${y}H${x2}" stroke="#698e86" stroke-opacity=".25" stroke-width=".8"/><path d="M${x1} ${y-9}v18M${x2} ${y-9}v18${ticks}" stroke="#85b9b7" stroke-opacity=".32" stroke-width=".8"/><circle cx="${x1}" cy="${y}" r="3" fill="#0b1314" stroke="#85b9b7" stroke-opacity=".35"/><circle cx="${x2}" cy="${y}" r="3" fill="#0b1314" stroke="#85b9b7" stroke-opacity=".35"/></g>`;}
+    bounds(p){return {x:clamp(p.x,160,850),y:clamp(p.y,145,510)};}
+    moveTo(p,method='point'){
+      if(this.mode!=='playing')return;const from={...this.state.halo},to=this.bounds(p);this.state.target=to;
+      this.session.log(this.index,'move',{method,from,x:to.x,y:to.y,effective:dist(from,to)>2,outcome:dist(from,to)>2?'field moved':'boundary'});
+      if(dist(from,to)>2)this.sound.play('move',(to.x-500)/500);
+    }
+    pulse(){
+      if(this.mode!=='playing'||performance.now()-this.pulseAt<550||this.pointer?.moved)return;
+      this.endKeyGesture();const now=performance.now();this.pulseAt=now;$('pulse').classList.remove('idle');
+      const s=this.state,nodes=this.allNodes(),ready=nodes.filter(n=>this.ready(n)),def=STAGES[this.index],signature=this.signature();
+      let effective=false,outcome='no response',complete=false,awaken=false;
+      if(!def.coupled){const fresh=ready.filter(n=>!n.lit);fresh.forEach(n=>n.lit=true);effective=fresh.length>0;complete=s.nodes.every(n=>n.lit);outcome=complete?'circuit complete':effective?'response stored':ready.length?'response already stored':'no response';}
+      else if(ready.length===nodes.length){effective=true;if(this.index===4&&!s.awake){awaken=true;outcome='aperture became a source';}else{complete=true;outcome='circuit complete';}}
+      else outcome=ready.length?'incomplete conjunction':'no response';
+      this.session.log(this.index,'pulse',{x:s.halo.x,y:s.halo.y,ready:ready.map(n=>n.id),effective,outcome,signature,contradiction:!effective,objects:nodes.map(n=>({id:n.id,x:n.x,y:n.y,kind:n.kind}))});
+      this.fx.push({type:'pulse',x:s.halo.x,y:s.halo.y,born:now,color:ready.length?C.gold:C.dim});
+      this.feedbackUntil=now+1500;this.feedback={ready:ready.map(n=>n.id),good:effective,complete,awaken};
+      for(const n of nodes){if(this.ready(n)){this.fx.push({type:'response',x:n.x,y:n.y,born:now,color:C[n.kind]});}else if(!n.lit){this.fx.push({type:'miss',x:n.x,y:n.y,born:now,color:C[n.kind],kind:n.kind});}}
+      this.sound.play(complete?'complete':awaken?'awaken':effective?'charge':ready.length?'partial':'fail');
+      $('live').textContent=complete?'The circuit responds.':awaken?'The aperture responds with amber light.':effective?'A response is stored.':ready.length?'Some points respond; the circuit returns the signal.':'The field expands. No response.';
+      if(awaken){s.awake=true;$('gate-rail').setAttribute('opacity','.9');$('gate-grips').setAttribute('opacity','1');$('gate').setAttribute('class','draggable');$('gate').setAttribute('role','slider');$('gate').setAttribute('tabindex','0');$('gate').setAttribute('aria-label','Movable amber aperture');$('gate').setAttribute('aria-valuemin','345');$('gate').setAttribute('aria-valuemax','830');$('gate').setAttribute('aria-valuenow',s.gate.x);}
+      if(complete)this.complete();
+    }
+    async complete(){
+      this.state.solved=true;this.mode='transition';this.keys.clear();this.keyGesture=null;this.pointer=null;this.session.endStage(this.index);$('pulse').disabled=true;$('reset').disabled=true;
+      await sleep(1650);$('board-wrap').classList.add('changing');await sleep(650);
+      if(this.index<4){this.load(this.index+1);$('board-wrap').classList.remove('changing');$('board').focus({preventScroll:true});}
+      else{this.session.finish();this.mode='debrief';$('room').hidden=true;this.renderDebrief();$('debrief').hidden=false;window.scrollTo(0,0);$('debrief-title').focus({preventScroll:true});$('board-wrap').classList.remove('changing');}
+      $('pulse').disabled=false;$('reset').disabled=false;
+    }
+    reset(){if(this.mode!=='playing')return;this.endKeyGesture();this.session.log(this.index,'reset',{effective:false,outcome:'room restored'});this.load(this.index,true);this.sound.play('move');$('board').focus({preventScroll:true});}
+    point(event){const p=$('board').createSVGPoint();p.x=event.clientX;p.y=event.clientY;return p.matrixTransform($('board').getScreenCTM().inverse());}
+    endKeyGesture(){if(!this.keyGesture||!this.session)return;const from=this.keyGesture;this.keyGesture=null;this.session.log(this.index,'move',{method:'keyboard',from,x:this.state.halo.x,y:this.state.halo.y,effective:dist(from,this.state.halo)>2,outcome:dist(from,this.state.halo)>2?'field moved':'boundary'});}
+    bind(){
+      $('enter').addEventListener('click',()=>this.start());$('pulse').addEventListener('click',()=>this.pulse());$('reset').addEventListener('click',()=>this.reset());
+      $('sound').addEventListener('click',()=>{const enabled=this.sound.toggle();$('sound').setAttribute('aria-pressed',String(enabled));$('sound').setAttribute('aria-label',enabled?'Mute sound':'Enable sound');document.querySelector('.sound-waves').style.display=enabled?'':'none';document.querySelector('.sound-slash').style.display=enabled?'none':'';if(enabled)this.sound.play('move');});
+      const board=$('board');
+      board.addEventListener('pointerdown',e=>{
+        if(this.mode!=='playing'||e.button!==0||this.pointer)return;e.preventDefault();this.endKeyGesture();this.keys.clear();board.focus({preventScroll:true});board.setPointerCapture(e.pointerId);const p=this.point(e);let node=this.state.nodes.filter(n=>n.draggable&&dist(n,p)<33).sort((a,b)=>dist(a,p)-dist(b,p))[0];
+        if(this.index===4&&this.state.awake&&dist(this.state.gate,p)<55)node={id:'gate',...this.state.gate};
+        if(node&&dist(p,this.state.halo)<dist(p,node)&&dist(p,this.state.halo)<24)node=null;
+        this.pointer={id:e.pointerId,start:{x:p.x,y:p.y},last:{x:p.x,y:p.y},from:{...(node||this.state.halo)},node:node?.id||null,moved:false};
+      });
+      board.addEventListener('pointermove',e=>{
+        if(!this.pointer||this.pointer.id!==e.pointerId||this.mode!=='playing')return;const p=this.point(e),g=this.pointer;g.last=p;if(dist(g.start,p)>5)g.moved=true;if(!g.moved)return;
+        if(g.node){const node=g.node==='gate'?this.state.gate:this.state.nodes.find(n=>n.id===g.node);node.x=clamp(g.from.x+p.x-g.start.x,g.node==='gate'?345:node.minX,g.node==='gate'?830:node.maxX);if(g.node==='gate')$('gate').setAttribute('aria-valuenow',Math.round(node.x));else $('node-'+g.node).setAttribute('aria-valuenow',Math.round(node.x));}
+        else{this.state.halo=this.bounds({x:g.from.x+p.x-g.start.x,y:g.from.y+p.y-g.start.y});this.state.target={...this.state.halo};}
+      });
+      const release=(e,cancelled=false)=>{
+        if(!this.pointer||this.pointer.id!==e.pointerId)return;const g=this.pointer;this.pointer=null;if(board.hasPointerCapture(e.pointerId))board.releasePointerCapture(e.pointerId);if(this.mode!=='playing')return;
+        if(g.moved){const n=g.node==='gate'?this.state.gate:g.node?this.state.nodes.find(n=>n.id===g.node):this.state.halo;this.session.log(this.index,g.node?'drag':'move',{target:g.node||'field',method:'drag',from:{x:g.from.x,y:g.from.y},x:n.x,y:n.y,effective:dist(g.from,n)>2,outcome:dist(g.from,n)>2?'position changed':'boundary'});}
+        else if(!cancelled){const p=this.point(e);if(dist(p,this.state.halo)<31)this.pulse();else this.moveTo(p);}
+      };
+      board.addEventListener('pointerup',e=>release(e));board.addEventListener('pointercancel',e=>release(e,true));board.addEventListener('lostpointercapture',e=>{if(this.pointer)release(e,true);});
+      window.addEventListener('keydown',e=>{
+        if(this.mode!=='playing')return;const key=e.key.toLowerCase();
+        if(e.target.closest('button'))return;
+        if(key===' '){e.preventDefault();if(!e.repeat)this.pulse();return;}
+        if(['arrowleft','arrowright','arrowup','arrowdown','w','a','s','d'].includes(key)){
+          e.preventDefault();const slider=e.target.closest('[role="slider"]');
+          if(slider && ['arrowleft','arrowright','a','d'].includes(key)){
+            const gate=slider.id==='gate',n=gate?this.state.gate:this.state.nodes.find(n=>'node-'+n.id===slider.id);if(!n)return;const from={x:n.x,y:n.y};n.x=clamp(n.x+(['arrowleft','a'].includes(key)?-12:12),gate?345:n.minX,gate?830:n.maxX);slider.setAttribute('aria-valuenow',Math.round(n.x));this.session.log(this.index,'drag',{target:gate?'gate':n.id,method:'keyboard',from,x:n.x,y:n.y,effective:from.x!==n.x,outcome:from.x===n.x?'boundary':'position changed'});return;
+          }
+          if(!this.keys.size)this.keyGesture={...this.state.halo};this.keys.add(key);
+        }
+        if(key==='r'&&!e.repeat){e.preventDefault();this.reset();}
+      });
+      window.addEventListener('keyup',e=>{this.keys.delete(e.key.toLowerCase());if(!this.keys.size)this.endKeyGesture();});
+      window.addEventListener('blur',()=>{this.keys.clear();this.endKeyGesture();});
+      document.addEventListener('visibilitychange',()=>{if(document.hidden){this.keys.clear();this.endKeyGesture();}this.session?.visibility(document.hidden);});
+      window.addEventListener('resize',()=>this.resize());this.resize();
+    }
+    resize(){const portrait=innerWidth<700;$('board').setAttribute('viewBox',portrait?'120 90 770 470':'0 0 1000 660');}
+    frame(now){
+      const dt=Math.min((now-this.lastFrame)/1000,.04);this.lastFrame=now;
+      if((this.mode==='playing'||this.mode==='transition')&&this.state){
+        const s=this.state;
+        if(this.mode==='playing'&&this.keys.size){let dx=(this.keys.has('d')||this.keys.has('arrowright')?1:0)-(this.keys.has('a')||this.keys.has('arrowleft')?1:0),dy=(this.keys.has('s')||this.keys.has('arrowdown')?1:0)-(this.keys.has('w')||this.keys.has('arrowup')?1:0);const len=Math.hypot(dx,dy)||1;s.halo=this.bounds({x:s.halo.x+dx/len*215*dt,y:s.halo.y+dy/len*215*dt});s.target={...s.halo};}
+        else if(!this.pointer?.moved){const k=reduced?1:1-Math.exp(-dt*13);s.halo.x+=(s.target.x-s.halo.x)*k;s.halo.y+=(s.target.y-s.halo.y)*k;if(dist(s.halo,s.target)<.05)s.halo={...s.target};}
+        this.paint(now);
+      }
+      this.raf=requestAnimationFrame(this.frame);
+    }
+    paint(now){
+      const s=this.state,def=STAGES[this.index],readyIDs=this.readyIDs(),readyKey=readyIDs.join(','),feedback=now<this.feedbackUntil?this.feedback:null;
+      if(readyKey!==this.lastReady&&this.mode==='playing'){if(readyKey&&(!this.lastReady||readyKey.split(',').length>this.lastReady.split(',').length))this.sound.play('ready',(s.halo.x-500)/500);this.lastReady=readyKey;}
+      $('field').setAttribute('transform',`translate(${s.halo.x} ${s.halo.y})`);
+      $('inner-wash').setAttribute('stroke-opacity',readyIDs.some(id=>this.allNodes().find(n=>n.id===id)?.kind==='gold')?'.85':'.38');
+      $('outer-wash').setAttribute('stroke-opacity',readyIDs.some(id=>this.allNodes().find(n=>n.id===id)?.kind==='blue')?'.065':feedback&&!feedback.good?'.07':'.018');
+      s.nodes.forEach((n,i)=>{
+        const el=$('node-'+n.id),ready=this.ready(n),lit=n.lit||s.solved,active=lit||ready||feedback?.ready.includes(n.id);el.setAttribute('transform',`translate(${n.x} ${n.y})`);
+        el.querySelector('.node-glow').setAttribute('opacity',active?(lit?'.26':'.14'):'0');el.querySelector('.node-body').setAttribute('fill-opacity',n.kind==='gold'?(active?'1':'.6'):'1');el.querySelector('.node-ready').setAttribute('stroke-opacity',active?'1':'.2');
+        const port={x:s.gate.x-48,y:s.gate.y+(i-(s.nodes.length-1)/2)*14};const bend=Math.max(n.x+35,port.x-65);const path=`M${n.x+19} ${n.y}C${bend} ${n.y} ${bend} ${port.y} ${port.x} ${port.y}`;
+        $('wire-'+n.id).setAttribute('d',path);$('wire-'+n.id).setAttribute('stroke-opacity',lit?'.65':ready?'.33':'.13');$('port-'+n.id).setAttribute('cx',port.x);$('port-'+n.id).setAttribute('cy',port.y);$('port-'+n.id).setAttribute('fill',lit?C[n.kind]:'#0c1213');
+        const flow=$('flow-'+n.id);flow.setAttribute('d',path);
+        if(feedback?.ready.includes(n.id)){
+          const t=(now-this.pulseAt)/1500;flow.setAttribute('stroke-opacity',String(Math.sin(Math.min(1,t)*Math.PI)*.9));flow.setAttribute('stroke-dasharray','.12 .88');flow.setAttribute('stroke-dashoffset',String(feedback.good?-t*1.4:(t<.5?-t*1.6:-(1-t)*1.6)));
+        }else flow.setAttribute('stroke-opacity','0');
+      });
+      if(def.coupled){const top=s.gate.y-(s.nodes.length-1)*7-7,bottom=s.gate.y+(s.nodes.length-1)*7+7;$('coupling').setAttribute('d',`M${s.gate.x-62} ${top}h-6V${bottom}h6`);$('coupling').setAttribute('opacity',readyIDs.length===this.allNodes().length?'.9':'.4');}
+      $('gate-body').setAttribute('transform',`translate(${s.gate.x} ${s.gate.y})`);
+      const open=s.solved?clamp((now-this.pulseAt)/1300,0,1):0;
+      $('gate-light').setAttribute('stroke-opacity',s.awake?'.85':open?String(open):'.035');$('gate-light').setAttribute('r',String(32+open*7));$('gate-seed').setAttribute('opacity',s.awake?'1':String(.07+open*.8));$('gate-seed').setAttribute('r',String(s.awake?8:4+open*12));$('gate-seam').setAttribute('opacity',String(1-open));
+      this.fx=this.fx.filter(f=>now-f.born<1550);
+      $('effects').innerHTML=this.fx.map(f=>{
+        const t=clamp((now-f.born)/1500,0,1),fade=(1-t)**1.6;
+        if(f.type==='pulse')return `<circle cx="${f.x}" cy="${f.y}" r="${reduced?146:8+t*200}" fill="none" stroke="${f.color}" stroke-opacity="${fade*.65}" stroke-width=".8"/><circle cx="${f.x}" cy="${f.y}" r="${reduced?104:8+t*150}" fill="none" stroke="${C.blue}" stroke-opacity="${fade*.4}" stroke-width=".6"/>`;
+        if(f.type==='response')return `<circle cx="${f.x}" cy="${f.y}" r="${reduced?29:17+t*38}" fill="none" stroke="${f.color}" stroke-opacity="${fade*.9}" stroke-width="1"/>`;
+        const d=dist(f,s.halo),dx=d<1?1:(f.x-s.halo.x)/d,dy=d<1?0:(f.y-s.halo.y)/d,desired=f.kind==='blue'?125:40;
+        // The missing point's own color identifies the region it needs.
+        const px=s.halo.x+dx*desired,py=s.halo.y+dy*desired;
+        return `<circle cx="${f.x}" cy="${f.y}" r="${reduced?22:18+Math.sin(t*Math.PI)*7}" fill="none" stroke="${f.color}" stroke-opacity="${fade*.7}" stroke-dasharray="2 5"/><path d="M${f.x} ${f.y}L${px} ${py}" stroke="${f.color}" stroke-opacity="${fade*.32}" stroke-width=".7" stroke-dasharray="2 5"/><circle cx="${px}" cy="${py}" r="3" fill="none" stroke="${f.color}" stroke-opacity="${fade*.7}"/>`;
+      }).join('');
+    }
+
+    renderDebrief(){
+      const session=this.session,events=session.events,pulses=events.filter(e=>e.type==='pulse'),moves=events.filter(e=>e.type==='move'),drags=events.filter(e=>e.type==='drag'),productive=pulses.filter(e=>e.effective),ineffective=events.filter(e=>e.effective===false&&e.type!=='reset'),resets=events.filter(e=>e.type==='reset').length;
+      const style=drags.length>moves.length*.65&&drags.length>pulses.length*.5?'Object-led':moves.length>pulses.length*1.4?'Spatial':pulses.length>moves.length*1.4?'Signal-led':'Alternating';
+      const styleText={ 'Object-led':'You spent more of your adjustments moving parts of the instrument. Objects, and their relationship to the field, became a frequent testing ground.',Spatial:'You moved the field more often than you sent a pulse. Much of your exploration happened through spatial adjustments before a test.','Signal-led':'You sent pulses more often than you moved the field. Direct responses from the instrument were a frequent part of your exploration.',Alternating:'You moved between repositioning the field and testing its response. Neither movement nor pulsing dominated your recorded actions.'}[style];
+      const transfer=session.stages[1].firstResponse,deep=pulses.filter(e=>e.stage>=3),deepGood=deep.filter(e=>e.effective),rev=session.revisions,flex=session.flex;
+      const metrics=[
+        ['Exploration Style',style,`${styleText} This session included ${moves.length} field movements, ${drags.length} object adjustments, and ${pulses.length} pulses.`],
+        ['Rule Discovery Efficiency',`${productive.length} / ${pulses.length} pulses`,`Those ${productive.length} pulses stored a new response, awakened the aperture, or completed a circuit. Other pulses supplied feedback without advancing the state.`],
+        ['Cognitive Flexibility',flex.total?`${flex.changed} interaction shifts`:'No comparison yet',flex.total?`After unproductive pulses, you changed between field movement and object adjustment in ${flex.changed} of ${flex.total} comparable follow-up interventions.`:'There were too few comparable follow-up interventions after unproductive pulses to describe a pattern.'],
+        ['Hypothesis Persistence',`${session.repeatFailures} repeated outcomes`,'This counts consecutive unsuccessful trials using the same responding points and approximately the same field and object positions. Repetition can also be a deliberate check.'],
+        ['Transfer Learning',transfer?`${transfer.actions} actions to reuse`:'Not observed',transfer?`In Room II, the familiar inner-field rule first produced a new response after ${transfer.actions} actions and ${fmt(transfer.time)}. This describes reuse within this experiment only.`:'No reuse event was recorded.'],
+        ['Planning Efficiency',`${deepGood.length} / ${deep.length} decisive pulses`,`In the two coupled rooms, ${deepGood.length} of ${deep.length} pulses advanced the circuit. You made ${events.filter(e=>e.stage>=3&&(e.type==='move'||e.type==='drag')).length} position adjustments there. Preparatory thought itself is not observable.`],
+        ['Evidence Sensitivity',rev.total?`${rev.changed} / ${rev.total} trials revised`:'No contradictory trials',rev.total?`After a pulse made no progress, ${rev.changed} of ${rev.total} next trials used a different response pattern or changed position by roughly 40 room units. Small refinements may not count.`:'There was no unsuccessful pulse followed by another trial to compare. This session provides no evidence for this pattern.']
+      ];
+      $('debrief').innerHTML=`
+        <div class="debrief-top"><span class="eyebrow">The Unknown Room <span style="color:#4d5e53">/</span> Cognitive debrief</span><span class="eyebrow complete-mark">Circuit complete</span></div>
+        <header class="debrief-header"><div><div class="eyebrow">Observation record · 001</div><h1 id="debrief-title" tabindex="-1">You found<br>the <em>system.</em></h1><p>The last door was another part of the instrument.<br>What looked like a destination became a relationship.</p></div><div class="debrief-seal"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="34" stroke="#85b9b7" stroke-opacity=".4" stroke-dasharray="1 4"/><circle cx="40" cy="40" r="17" stroke="#c9b68b"/><circle cx="40" cy="40" r="4" fill="#c9b68b"/><path d="M40 6 10.55 57H69.45Z" stroke="#899c79" stroke-opacity=".35"/><circle cx="40" cy="6" r="3" fill="#85b9b7"/><circle cx="10.55" cy="57" r="3" fill="#85b9b7"/><circle cx="69.45" cy="57" r="3" fill="#85b9b7"/></svg><p>Five rooms.<br>One visual language.<br>Your own way through.</p></div></header>
+        <div class="stats"><div class="stat"><div class="stat-value">${fmt(session.now())}</div><div class="eyebrow">Active session</div></div><div class="stat"><div class="stat-value">${events.length}</div><div class="eyebrow">Total actions</div></div><div class="stat"><div class="stat-value">${ineffective.length}</div><div class="eyebrow">No state progress</div></div><div class="stat"><div class="stat-value">${resets}</div><div class="eyebrow">Room resets</div></div></div>
+        <div class="section-heading"><h2>A trace of your thinking</h2><p>Observed behavior, without a score</p></div>
+        <div class="metric-grid">${metrics.map((m,i)=>`<article class="metric"><div><h3><span class="metric-index">0${i+1}</span>${m[0]}</h3><div class="metric-value">${m[1]}</div></div><p>${m[2]}</p>${i?'<span class="metric-glyph" aria-hidden="true">'+['','⌁','⇄','↺','↗','∴','◇'][i]+'</span>':''}</article>`).join('')}</div>
+        <p class="observation-note">These descriptions reflect actions in this session, not intelligence, personality, or a clinical assessment. A pause does not tell us what you were thinking. Unproductive actions can produce useful evidence. Time excludes hidden tabs; movements are recorded as gestures, not individual frames.</p>
+        <div class="section-heading"><h2>Your path through the room</h2><p>Every experiment leaves a trace</p></div>
+        <div class="path-panel"><div class="timeline-heading"><h3>Five moments of discovery</h3><div class="legend"><span><i></i>New response</span><span><i class="move-dot"></i>Adjustment</span><span><i class="fail-dot"></i>No progress</span></div></div><svg id="timeline" viewBox="0 0 1000 190" role="img" aria-label="Action timeline across five rooms"></svg><div class="room-tabs" role="tablist" aria-label="Explore each room">${STAGES.map((s,i)=>`<button class="room-tab" id="tab-${i}" role="tab" aria-selected="${i===0}" aria-controls="path-detail" data-stage="${i}" tabindex="${i===0?0:-1}"><span>${roman[i]}</span>${s.name}</button>`).join('')}</div><div class="path-detail" id="path-detail" role="tabpanel" aria-labelledby="tab-0"></div></div>
+        <footer class="debrief-footer"><div class="footer-actions"><button class="restart" id="restart">RE-ENTER THE ROOM ↗</button><button class="export" id="export">↓ Export session</button></div><div class="privacy">Entirely local. No accounts. No transmission.<br>Your observation record disappears when you close this page.</div></footer>`;
+      this.renderTimeline();this.selectStage(0);
+      $('restart').onclick=()=>this.start();$('export').onclick=()=>{const blob=new Blob([JSON.stringify(session.export(),null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='unknown-room-observation.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);};
+      document.querySelectorAll('.room-tab').forEach(b=>{b.onclick=()=>this.selectStage(+b.dataset.stage);b.onkeydown=e=>{let i=+b.dataset.stage;if(e.key==='ArrowRight')i=(i+1)%5;else if(e.key==='ArrowLeft')i=(i+4)%5;else if(e.key==='Home')i=0;else if(e.key==='End')i=4;else return;e.preventDefault();this.selectStage(i);$('tab-'+i).focus();};});
+    }
+    renderTimeline(){
+      const timeline=$('timeline'),duration=this.session.now()||1,x=t=>70+t/duration*910;
+      const scroll=document.createElement('div');scroll.className='timeline-scroll';timeline.before(scroll);scroll.append(timeline);
+      timeline.innerHTML=this.session.stages.map((s,i)=>{
+        const y=24+i*32,ev=this.session.events.filter(e=>e.stage===i),end=s.end??this.session.now();
+        return `<text x="0" y="${y+3}" fill="#94a58e" font-family="Consolas,monospace" font-size="9">${roman[i].padEnd(3,' ')} ${fmt(end-s.start)}</text><path d="M${x(s.start)} ${y}H${x(end)}" stroke="#5b70564d" stroke-width="3"/>`+ev.map(e=>{
+          const color=e.type==='pulse'?(e.effective?C.gold:C.red):e.type==='reset'?C.red:'#688e89',r=e.type==='pulse'?3.2:2;
+          return `<g tabindex="0" data-event="${e.id}" role="button" aria-label="Room ${roman[i]}, ${e.type}, ${e.outcome}, ${fmt(e.time-s.start)}"><circle cx="${x(e.time)}" cy="${y}" r="8" fill="transparent"/><circle cx="${x(e.time)}" cy="${y}" r="${r}" fill="${color}"/><title>${e.type}: ${e.outcome} · ${fmt(e.time-s.start)}</title></g>`;
+        }).join('');
+      }).join('')+`<text x="70" y="188" font-family="Consolas,monospace" font-size="8" fill="#6e816c">0:00</text><text x="980" y="188" text-anchor="end" font-family="Consolas,monospace" font-size="8" fill="#6e816c">${fmt(duration)} / FOREGROUND TIME</text>`;
+      timeline.querySelectorAll('[data-event]').forEach(el=>{
+        const event=this.session.events[+el.dataset.event-1];
+        const show=()=>{const r=el.getBoundingClientRect();$('tooltip').textContent=`${roman[event.stage]} · ${fmt(event.time-this.session.stages[event.stage].start)} · ${event.type}\n${event.outcome}`;$('tooltip').style.left=clamp(r.left,12,innerWidth-245)+'px';$('tooltip').style.top=Math.max(12,r.top-65)+'px';$('tooltip').hidden=false;};
+        el.addEventListener('pointerenter',show);el.addEventListener('focus',show);el.addEventListener('pointerleave',()=>{$('tooltip').hidden=true;});el.addEventListener('blur',()=>{$('tooltip').hidden=true;});el.addEventListener('click',()=>this.selectStage(event.stage));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();this.selectStage(event.stage);}});
+      });
+    }
+    selectStage(index){
+      document.querySelectorAll('.room-tab').forEach((b,i)=>{b.setAttribute('aria-selected',String(i===index));b.tabIndex=i===index?0:-1;});$('path-detail').setAttribute('aria-labelledby','tab-'+index);
+      const def=STAGES[index],stage=this.session.stages[index],events=this.session.events.filter(e=>e.stage===index),pulses=events.filter(e=>e.type==='pulse');
+      // Reset boundaries start a new path, preventing fictitious travel between attempts.
+      let d=`M${def.halo.x} ${def.halo.y}`;
+      for(const e of events){if(e.type==='reset')d+=`M${def.halo.x} ${def.halo.y}`;else if(e.type==='move'||e.type==='pulse')d+=`L${e.x} ${e.y}`;}
+      const nodes=(pulses.at(-1)?.objects||def.nodes);
+      $('path-detail').innerHTML=`<svg class="path-map" viewBox="120 120 770 410" role="img" aria-label="Recorded movement path in room ${roman[index]}"><path d="${d}" stroke="#799b88" stroke-opacity=".55" stroke-width="1.5" fill="none" stroke-dasharray="3 6"/>${nodes.map(n=>`<circle cx="${n.x}" cy="${n.y}" r="10" fill="#0d1612" stroke="${C[n.kind]}" stroke-opacity=".65"/>`).join('')}${pulses.map(e=>`<circle cx="${e.x}" cy="${e.y}" r="${e.effective?7:4}" fill="${e.effective?C.gold:C.red}" fill-opacity=".7"/>`).join('')}<circle cx="${def.halo.x}" cy="${def.halo.y}" r="18" fill="none" stroke="#809574" stroke-dasharray="2 4"/><text x="150" y="505" font-family="Consolas,monospace" font-size="10" fill="#84987d">FIELD PATH / PULSE LOCATIONS</text></svg><div class="path-copy"><h3>${roman[index]}. ${def.name}</h3><p>${def.insight}</p><div class="eyebrow">${fmt(stage.end-stage.start)} in room · ${events.length} actions · ${pulses.length} pulses · ${stage.resets} resets</div></div>`;
+    }
+  }
+  const instrument=new Instrument();
+  // Read-only inspection supports reproducible testing without a gameplay shortcut.
+  window.UnknownRoom=Object.freeze({inspect:()=>instrument.snapshot()});
+})();
+</script>
+</body>
+</html>

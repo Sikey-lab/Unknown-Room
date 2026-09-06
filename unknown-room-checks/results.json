@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checks": [
+    "five-stage real-input playthrough",
+    "informative failure",
+    "repeat tracking",
+    "keyboard pulse",
+    "persistent latch",
+    "impossible initial conjunction",
+    "node dragging",
+    "two-step final reversal",
+    "final reset recovery",
+    "timeline tabs",
+    "JSON export",
+    "fresh session",
+    "held-key grouping",
+    "mobile touch and fit",
+    "audio toggle",
+    "zero browser errors",
+    "five-stage mobile touch playthrough",
+    "no-audio fallback"
+  ],
+  "events": 25,
+  "motion": "no-preference"
+}
